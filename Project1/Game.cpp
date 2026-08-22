@@ -1,0 +1,112 @@
+#include "Game.h"
+#include "Dxlib.h"
+
+Game::Game()
+{
+	nowCount = 0;
+	prevCount = 0;
+}
+
+Game::Game()
+{
+	Dxllib_END();
+}
+
+//=============================
+//初期化　
+//=============================
+
+bool Game::Init()
+{
+	ChangrWindowMode(TRUE);
+
+	SetGraphMode(Config:WINOW_WIDTH, Config::WINDOW_HEIGHT, Config::COLOR_BIT);
+
+	if (DxLib_Init() == -1)
+	{
+		return false;
+	}
+
+	//=======================
+	//Player初期化
+	//=======================
+
+	if (!player.Init())
+	{
+		return false;
+	}
+
+	//======================
+	//Map初期化
+	//======================
+
+	if (!map.Init())
+	{
+		return false;
+	}
+
+	//======================
+	//タイマー初期化
+	//======================
+
+	nowCount = GetNowCount();
+	prevCount = nowCount;
+
+	return true;
+}
+
+//========================
+//ゲームループ
+//========================
+
+void Game::Run()
+{
+	while (ProcessMessage() == 0 && CheckHitKey(KEY_INPUT_ESCAPE) == 0)
+	{
+		//========================
+		//DeltaTime
+		//========================
+
+		nowCount = GetNowCount();
+
+		float deltaTime = (nowCount - prevCount) / 1000.0f;
+
+		//=========================
+		//更新
+		//=========================
+
+		Updade(deltaTime);
+
+		//=========================
+		//描画
+		//=========================
+
+		ClearDrawScreen();
+
+		Draw();
+
+		ScreenFlip();
+
+		prevCount = nowCount;
+	}
+}
+
+//=========================
+//更新
+//=========================
+
+void Game::Update(float deltaTime)
+{
+	player.Update(deltaTime, map);
+}
+
+//=========================
+//描画
+//=========================
+
+void Game::Draw()
+{
+	map.Draw();
+
+	player.Draw();
+}
