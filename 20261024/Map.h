@@ -4,31 +4,31 @@
 class Map
 {
 private:
-	//ãƒ•ã‚¡ã‚¤ãƒ«ã‚’èª­ã¿è¾¼ã¿
+	//ƒtƒ@ƒCƒ‹‚ğ“Ç‚İ‚İ
 	/// <summary>
-	/// ãƒ­ãƒ¼ãƒ‰ãƒãƒƒãƒ—
+	/// ƒ[ƒhƒ}ƒbƒv
 	/// </summary>
-	/// <param name="filePath">ãƒãƒƒãƒ—CSVãƒ•ã‚¡ã‚¤ãƒ«ãƒ‘ã‚¹</param>
-	/// <param name="mapData">ãƒãƒƒãƒ—ãƒãƒƒãƒ—ã‚¤ãƒ¡ãƒ¼ã‚¸</param>
-	/// <returns>æç”»åˆ¤å®š</returns>
+	/// <param name="filePath">ƒ}ƒbƒvCSVƒtƒ@ƒCƒ‹ƒpƒX</param>
+	/// <param name="mapData">ƒ}ƒbƒvƒ`ƒbƒvƒCƒ[ƒW</param>
+	/// <returns>•`‰æ”»’è</returns>
 	bool LoadMap(const char* filePath, std::vector<std::vector<int>>& mapData);
 
 	/// <summary>
-	/// æç”»ãƒ¬ã‚¤ãƒ¤ãƒ¼
+	/// •`‰æƒŒƒCƒ„[
 	/// </summary>
-	/// <param name="mapData">ãƒãƒƒãƒ—ãƒãƒƒãƒ—ã‚¤ãƒ¡ãƒ¼ã‚¸</param>
+	/// <param name="mapData">ƒ}ƒbƒvƒ`ƒbƒvƒCƒ[ƒW</param>
 	void DrawLayer(const std::vector<std::vector<int>>& mapData) const;
 
 	/// <summary>
-	/// æç”»ãƒ•ãƒ©ã‚°
+	/// •`‰æƒtƒ‰ƒO
 	/// </summary>
-	/// <param name="mapX">Xåº§æ¨™</param>
-	/// <param name="mapY">Yåº§æ¨™</param>
-	/// <returns>æç”»ãƒ•ãƒ©ã‚°</returns>
-	bool IsValidMapPosition(int mapX, int mapY);
+	/// <param name="mapX">XÀ•W</param>
+	/// <param name="mapY">YÀ•W</param>
+	/// <returns>•`‰æƒtƒ‰ƒO</returns>
+	bool IsValidMapPosition(int mapX, int mapY) const;
 
 	int chipImages[Config::MAP_CHIP_IMAGE_COUNT];
-	//ãƒãƒƒãƒ—ã®å†…å®¹
+	//ƒ}ƒbƒv‚Ì“à—e
 	std::vector<std::vector<int>> backMap;
 	std::vector<std::vector<int>> baseMap;
 	std::vector<std::vector<int>> nearMap;
@@ -37,26 +37,26 @@ private:
 	int mapYNum;
 	bool isInitialized;
 public:
-	//ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿ï¼†ãƒ‡ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
+	//ƒRƒ“ƒXƒgƒ‰ƒNƒ^•ƒfƒXƒgƒ‰ƒNƒ^
 	Map();
 	~Map();
 
-	//ç”»åƒã¨CSVã‚’èª­ã¿è¾¼ã¿
+	//‰æ‘œ‚ÆCSV‚ğ“Ç‚İ‚İ
 
 	/// <summary>
-	/// ç”»åƒèª­ã¿è¾¼ã¿åˆæœŸåŒ–
+	/// ‰æ‘œ“Ç‚İ‚İ‰Šú‰»
 	/// </summary>
-	/// <returns>åˆæœŸåŒ–å†…å®¹</returns>
+	/// <returns>‰Šú‰»“à—e</returns>
 	bool Init();
 
-	//ãƒãƒƒãƒ—ã‚’å¥¥ã‹ã‚‰æ‰‹å‰ã®é †ã«æç”»
+	//ƒ}ƒbƒv‚ğ‰œ‚©‚çè‘O‚Ì‡‚É•`‰æ
 
 	/// <summary>
-	/// æç”»
+	/// •`‰æ
 	/// </summary>
 	void Draw() const;
 
-	//Dxlibçµ‚äº†å‰ã«å‘¼ã³å‡ºã—ã¦ç”»åƒãªã©ã‚’è§£æ”¾
+	//DxlibI—¹‘O‚ÉŒÄ‚Ño‚µ‚Ä‰æ‘œ‚È‚Ç‚ğ‰ğ•ú
 	void Finalize();
 };
 
